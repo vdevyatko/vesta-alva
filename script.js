@@ -91,18 +91,19 @@ document.querySelectorAll("form").forEach((form) => {
       return;
     }
 
-    form.classList.add("sent");
-
     const button = form.querySelector("button");
-    if (button) {
-      const original = button.textContent;
-      button.textContent = "Открываем письмо";
-      window.location.href = buildMailtoLink(form);
+    const originalText = button?.textContent;
 
-      window.setTimeout(() => {
-        button.textContent = original;
-        form.classList.remove("sent");
-      }, 2200);
+    if (button) {
+      button.textContent = "Открыть почту";
     }
+
+    window.location.href = buildMailtoLink(form);
+
+    window.setTimeout(() => {
+      if (button && originalText) {
+        button.textContent = originalText;
+      }
+    }, 1600);
   });
 });
