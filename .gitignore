@@ -1,0 +1,8 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+
+# Local server output and environment configuration
+node_modules/
+.env
+.env.*
