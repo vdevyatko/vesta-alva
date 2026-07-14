@@ -453,23 +453,23 @@
             </div>
           </div>
 
-          <form class="lead-form" id="partner-form">
+          <form class="lead-form" id="partner-form" data-email-to="irina@vesta-alva.ru" data-email-subject="Заявка для партнёров Vesta Alva">
             <h3>Заявка для партнёров</h3>
             <label>
               Компания
-              <input type="text" placeholder="Название организации" />
+              <input type="text" name="company" placeholder="Название организации" />
             </label>
             <label>
               Контактное лицо
-              <input type="text" placeholder="Имя" />
+              <input type="text" name="contact" placeholder="Имя" />
             </label>
             <label>
               Телефон или email
-              <input type="text" placeholder="+7 или email" />
+              <input type="text" name="phone_or_email" placeholder="+7 или email" required />
             </label>
             <label>
               Интерес
-              <select>
+              <select name="interest">
                 <option>Получить прайс</option>
                 <option>Запросить коммерческое предложение</option>
                 <option>Производство под СТМ</option>
@@ -478,7 +478,7 @@
             </label>
             <label>
               Комментарий
-              <textarea placeholder="Категории, объём, регион поставки"></textarea>
+              <textarea name="comment" placeholder="Категории, объём, регион поставки"></textarea>
             </label>
             <button class="btn btn-primary" type="submit">Отправить заявку</button>
           </form>
@@ -598,8 +598,8 @@
         </div>
         <div>
           <h3>Быстрая заявка</h3>
-          <form class="subscribe-form">
-            <input type="email" placeholder="Email для прайса" />
+          <form class="subscribe-form" data-email-to="irina@vesta-alva.ru" data-email-subject="Запрос прайса Vesta Alva">
+            <input type="email" name="email" placeholder="Email для прайса" required />
             <button type="submit">Отправить</button>
           </form>
           <p class="legal">Реквизиты, политика конфиденциальности и документы могут быть вынесены отдельными страницами.</p>

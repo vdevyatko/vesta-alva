@@ -55,15 +55,50 @@ categoryLinks.forEach((link) => {
 
 searchInput?.addEventListener("input", applyCatalogFilter);
 
+const fieldLabels = {
+  company: "Компания",
+  contact: "Контактное лицо",
+  phone_or_email: "Телефон или email",
+  interest: "Интерес",
+  comment: "Комментарий",
+  email: "Email для прайса",
+};
+
+function buildMailtoLink(form) {
+  const recipient = form.dataset.emailTo || "irina@vesta-alva.ru";
+  const subject = form.dataset.emailSubject || "Заявка с сайта Vesta Alva";
+  const formData = new FormData(form);
+  const bodyLines = ["Здравствуйте!", "", "Новая заявка с сайта Vesta Alva:", ""];
+
+  formData.forEach((value, key) => {
+    const text = String(value).trim();
+
+    if (text) {
+      bodyLines.push(`${fieldLabels[key] || key}: ${text}`);
+    }
+  });
+
+  bodyLines.push("", `Страница: ${window.location.href}`);
+
+  return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+}
+
 document.querySelectorAll("form").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    if (!form.reportValidity()) {
+      return;
+    }
+
     form.classList.add("sent");
 
     const button = form.querySelector("button");
     if (button) {
       const original = button.textContent;
-      button.textContent = "Заявка подготовлена";
+      button.textContent = "Открываем письмо";
+      window.location.href = buildMailtoLink(form);
+
       window.setTimeout(() => {
         button.textContent = original;
         form.classList.remove("sent");
